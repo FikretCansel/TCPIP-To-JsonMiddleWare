@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "cEd4dRULIp/xj63/xl6rAWbxsuML8rBDBhAsVFFMf8+0VyO9Ozpon94901s60iIv/7KnPHXFcIuSlQ2HVCTVfQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\fikre\\source\\repos\\RotatorDemo\\Business\\Business.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\fikre\\.nuget\\packages\\fluentvalidation\\10.3.0\\fluentvalidation.10.3.0.nupkg.sha512",
+    "C:\\Users\\fikre\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.0\\fluentvalidation.aspnetcore.10.3.0.nupkg.sha512",
+    "C:\\Users\\fikre\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.0\\fluentvalidation.dependencyinjectionextensions.10.3.0.nupkg.sha512",
+    "C:\\Users\\fikre\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
+    "C:\\Users\\fikre\\.nuget\\packages\\supersimpletcp\\2.4.0\\supersimpletcp.2.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

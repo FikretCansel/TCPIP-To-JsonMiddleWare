@@ -1,0 +1,12 @@
+C:\Users\fikre\source\repos\RotatorDemo\Core\bin\Debug\netcoreapp3.1\Core.deps.json
+C:\Users\fikre\source\repos\RotatorDemo\Core\bin\Debug\netcoreapp3.1\Core.dll
+C:\Users\fikre\source\repos\RotatorDemo\Core\bin\Debug\netcoreapp3.1\Core.pdb
+C:\Users\fikre\source\repos\RotatorDemo\Core\obj\Debug\netcoreapp3.1\Core.csproj.AssemblyReference.cache
+C:\Users\fikre\source\repos\RotatorDemo\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfoInputs.cache
+C:\Users\fikre\source\repos\RotatorDemo\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfo.cs
+C:\Users\fikre\source\repos\RotatorDemo\Core\obj\Debug\netcoreapp3.1\Core.csproj.CoreCompileInputs.cache
+C:\Users\fikre\source\repos\RotatorDemo\Core\obj\Debug\netcoreapp3.1\Core.dll
+C:\Users\fikre\source\repos\RotatorDemo\Core\obj\Debug\netcoreapp3.1\Core.pdb
+C:\Users\fikre\source\repos\RotatorDemo\Core\bin\Debug\netcoreapp3.1\Entity.dll
+C:\Users\fikre\source\repos\RotatorDemo\Core\bin\Debug\netcoreapp3.1\Entity.pdb
+C:\Users\fikre\source\repos\RotatorDemo\Core\obj\Debug\netcoreapp3.1\Core.csproj.CopyComplete
