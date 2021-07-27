@@ -7,19 +7,18 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Net;
 using Core.Results;
-using Core.TcpServer;
+using Core.TcpClient;
 
 namespace Business.Concrete
 {
     public class MotionToHostManager : IMotionToHostService
     {
-        TcpServerManager tcpServerService;
+        TcpClientManager tcpServerService;
         MotionToHost MotionToHost = new MotionToHost();
 
         public MotionToHostManager()
         {
-            tcpServerService = new TcpServerManager();
-            tcpServerService.StartServer();
+            tcpServerService = new TcpClientManager();
         }
 
         private MotionToHost ConvertToMotionToHost(String TcpMessage)

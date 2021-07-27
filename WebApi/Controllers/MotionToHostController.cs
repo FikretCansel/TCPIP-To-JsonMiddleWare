@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Business.Concrete;
-using Core.TcpServer;
 using Entity;
 using Core.Results;
 using Core.Validation;
