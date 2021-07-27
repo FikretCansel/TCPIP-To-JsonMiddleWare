@@ -29,6 +29,7 @@ namespace WebApi
         {
             services.AddControllers();
             services.AddSingleton<IMotionToHostService, MotionToHostManager>();
+            services.AddSingleton<IMessageListService, MessageListManager>();
             //services.AddSingleton<ITcpClientService, TcpClientManager>();
         }
 

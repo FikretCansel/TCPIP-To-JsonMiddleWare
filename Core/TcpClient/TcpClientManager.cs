@@ -15,11 +15,12 @@ namespace Core.TcpClient
         Boolean connectionState=false;
 
         //MotorCurrent.Motor1 MotorCurrent.Motor2 SystemTempe.Panel SystemTempe.Bellows
-        public String TcpMessage= "0&&0&&0&&0";
+        public String TcpMessage;
 
 
-        public TcpClientManager()
+        public TcpClientManager(String initTcpMessage)
         {
+            TcpMessage = initTcpMessage;
             client = new SimpleTcpClient("127.0.0.1:9000");
             client.Events.Connected += Events_Connected;
             client.Events.DataReceived += Events_DataReceived;
@@ -34,19 +35,21 @@ namespace Core.TcpClient
 
         private void Events_Disconnected(object sender, ClientDisconnectedEventArgs e)
         {
-            TcpMessage = "404&&404&&404&&404";
+            //TcpMessage = "404&&404&&404&&404";
             connectionState = false;
             client.Connect();
         }
 
         private void Events_Connected(object sender, ClientConnectedEventArgs e)
         {
-            TcpMessage = "0&&0&&0&&0";
+            //TcpMessage = "0&&0&&0&&0";
             connectionState = true;
         }
 
         public Result Send(String message)
         {
+            if (connectionState)
+            {
                 if (!string.IsNullOrEmpty(message))
                 {
                     client.Send(message);
@@ -56,6 +59,11 @@ namespace Core.TcpClient
                 {
                     return new Result(true, "Messaj Boş");
                 }
+            }
+            else
+            {
+                return new Result(false, "Server Baglanılamadı");
+            }
         }
     }
 }

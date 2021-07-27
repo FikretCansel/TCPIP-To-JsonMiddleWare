@@ -32,13 +32,13 @@ namespace WebApi.Controllers
         [HttpPost("send")]
         public ActionResult Send(MotionToHost motionToHost)
         {
-            MotionToHostValidator validator = new MotionToHostValidator();
-            ValidationResult validationResult = validator.Validate(motionToHost);
+                MotionToHostValidator validator = new MotionToHostValidator();
+                ValidationResult validationResult = validator.Validate(motionToHost);
 
-            if (!validationResult.IsValid)
-            {
-                return Ok( new Result(false,validationResult.Errors[0].ErrorMessage));
-            }
+                if (!validationResult.IsValid)
+                {
+                    return Ok( new Result(false,validationResult.Errors[0].ErrorMessage));
+                }
 
             Result result=_MotionToHostService.Send(motionToHost);
             if (result.Success)
