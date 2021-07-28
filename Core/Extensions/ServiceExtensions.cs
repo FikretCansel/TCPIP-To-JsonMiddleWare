@@ -11,7 +11,7 @@ namespace Core.Extensions
     {
         public static IServiceCollection StartTCPServer(this IServiceCollection services, int port, int maxQueue)
         {
-            Listener listener = new Listener(5555,50);
+            Listener listener = new Listener(port, maxQueue);
 
             listener.Start();
 
