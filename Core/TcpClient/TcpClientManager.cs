@@ -21,7 +21,7 @@ namespace Core.TcpClient
         public TcpClientManager(String initTcpMessage)
         {
             TcpMessage = initTcpMessage;
-            client = new SimpleTcpClient("127.0.0.1:9000");
+            client = new SimpleTcpClient("127.0.0.1:5555");
             client.Events.Connected += Events_Connected;
             client.Events.DataReceived += Events_DataReceived;
             client.Events.Disconnected += Events_Disconnected;

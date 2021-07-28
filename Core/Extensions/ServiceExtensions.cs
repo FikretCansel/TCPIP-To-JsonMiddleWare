@@ -1,6 +1,6 @@
-﻿using Core.Middlewares;
-using ExampleServer.Sockets;
+﻿using ExampleServer.Sockets;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +9,13 @@ namespace Core.Extensions
 {
     public static class ServiceExtensions
     {
-        public static IApplicationBuilder StartTCPServer(this IApplicationBuilder builder)
+        public static IServiceCollection StartTCPServer(this IServiceCollection services, int port, int maxQueue)
         {
-            return builder.UseMiddleware<TcpServerMiddleware>();
+            Listener listener = new Listener(5555,50);
+
+            listener.Start();
+
+            return services;
         }
     }
 }

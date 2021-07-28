@@ -24,7 +24,7 @@ namespace ExampleServer.Sockets
         #region Public Methods
         public async void Start()
         {
-            IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, 9450);
+            IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), _Port);
             _Socket.Bind(ipEndPoint);
             _Socket.Listen(_MaxConnectionQueue);
             _Socket.BeginAccept(OnBeginAccept, _Socket);

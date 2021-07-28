@@ -28,9 +28,14 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // TCP Server properties
+            const int TCPServer_Port = 5555;
+            const int TCPServer_MaxQueue = 50;
+
             services.AddControllers();
             services.AddSingleton<IMotionToHostService, MotionToHostManager>();
             services.AddSingleton<IMessageListService, MessageListManager>();
+            services.StartTCPServer(TCPServer_Port, TCPServer_MaxQueue);
             //services.AddSingleton<ITcpClientService, TcpClientManager>();
         }
 
@@ -49,8 +54,6 @@ namespace WebApi
             app.UseRouting();
 
             app.UseAuthorization();
-
-            app.StartTCPServer();
 
             app.UseEndpoints(endpoints =>
             {
