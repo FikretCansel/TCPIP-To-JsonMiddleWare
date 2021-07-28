@@ -1,5 +1,6 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -48,6 +49,8 @@ namespace WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.StartTCPServer();
 
             app.UseEndpoints(endpoints =>
             {
