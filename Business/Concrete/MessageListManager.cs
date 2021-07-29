@@ -40,13 +40,18 @@ namespace Business.Concrete
 
         public MessageList Get()
         {
-            MessageList MessageListValue = ConvertToMessageList(tcpServerService.TcpMessage);
+            MessageList MessageListValue = new MessageList();//ConvertToMessageList(tcpServerService.TcpMessage);
             return MessageListValue;
         }
 
         public Result Send(MessageList messageList)
         {
             return tcpServerService.Send(ConvertToString(messageList));
+        }
+
+        public Result TestSend(string testString)
+        {
+            return tcpServerService.Send(testString);
         }
     }
 }

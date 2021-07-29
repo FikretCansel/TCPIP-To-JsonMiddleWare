@@ -28,18 +28,18 @@ namespace WebApi.Controllers
                 return _MessageListService.Get();
             }
 
-            [HttpPost("send")]
-            public ActionResult Send(MessageList messageList)
+            [HttpGet("send")]
+            public ActionResult Send()
             {
             MessageListValidator validator = new MessageListValidator();
-            ValidationResult validationResult = validator.Validate(messageList);
+            /*ValidationResult validationResult = validator.Validate(messageList);
 
             if (!validationResult.IsValid)
             {
                 return Ok(new Result(false, validationResult.Errors[0].ErrorMessage));
-            }
+            }*/
 
-            Result result = _MessageListService.Send(messageList);
+            Result result = _MessageListService.TestSend("asdasd");
                 if (result.Success)
                 {
                     return Ok(result);

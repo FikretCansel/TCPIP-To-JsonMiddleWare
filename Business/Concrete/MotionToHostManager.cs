@@ -15,7 +15,7 @@ namespace Business.Concrete
     {
         TcpClientManager tcpServerService;
         MotionToHost MotionToHost = new MotionToHost();
-
+        
         public MotionToHostManager()
         {
             tcpServerService = new TcpClientManager("0&&0&&0&&0&&0");
@@ -34,13 +34,12 @@ namespace Business.Concrete
 
         public MotionToHost Get()
         {
-            MotionToHost MotionToHostValue = ConvertToMotionToHost(tcpServerService.TcpMessage);
+            MotionToHost MotionToHostValue = new MotionToHost();//ConvertToMotionToHost(tcpServerService.TcpMessage);
             return MotionToHostValue;
         }
 
         private String ConvertToString(MotionToHost motionToHost)
         {
-
             String result = "";
 
             result += motionToHost.MotorCurrent.Motor1+",";
@@ -51,7 +50,15 @@ namespace Business.Concrete
             return result;
         }
 
-
+        //private String ConvertToObject(byte[] motionToHost)
+        //{
+        //    BinaryFormatter bf = new BinaryFormatter();
+        //    using (MemoryStream ms = new MemoryStream(data))
+        //    {
+        //        object obj = bf.Deserialize(ms);
+        //        return (T)obj;
+        //    }
+        //}
 
         public Result Send(MotionToHost motionToHost)
         {

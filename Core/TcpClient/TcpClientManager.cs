@@ -6,6 +6,9 @@ using System.Net.Sockets;
 using System.Threading;
 using SimpleTcp;
 using Core.Results;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using Entity.Concrete.DTO.Receive;
 
 namespace Core.TcpClient
 {
@@ -15,13 +18,13 @@ namespace Core.TcpClient
         Boolean connectionState=false;
 
         //MotorCurrent.Motor1 MotorCurrent.Motor2 SystemTempe.Panel SystemTempe.Bellows
-        public String TcpMessage;
+        public IPlatformSubDTO TcpMessage;
 
 
         public TcpClientManager(String initTcpMessage)
         {
-            TcpMessage = initTcpMessage;
-            client = new SimpleTcpClient("127.0.0.1:5555");
+            //TcpMessage = initTcpMessage;
+            client = new SimpleTcpClient("127.0.0.1:8080");
             client.Events.Connected += Events_Connected;
             client.Events.DataReceived += Events_DataReceived;
             client.Events.Disconnected += Events_Disconnected;
@@ -30,7 +33,18 @@ namespace Core.TcpClient
 
         private void Events_DataReceived(object sender, DataReceivedEventArgs e)
         {
-            TcpMessage = Encoding.UTF8.GetString(e.Data);
+            byte [] TcpMessageBuffer = e.Data;
+
+            Console.WriteLine(TcpMessageBuffer);
+
+            BinaryFormatter bf = new BinaryFormatter();
+            using (MemoryStream ms = new MemoryStream(TcpMessageBuffer))
+            {
+                object obj = bf.Deserialize(ms);
+                TcpMessage = (IPlatformSubDTO)obj;
+            }
+
+            Console.WriteLine(TcpMessage.ToString());
         }
 
         private void Events_Disconnected(object sender, ClientDisconnectedEventArgs e)

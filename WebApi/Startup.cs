@@ -35,7 +35,7 @@ namespace WebApi
             services.AddControllers();
             services.AddSingleton<IMotionToHostService, MotionToHostManager>();
             services.AddSingleton<IMessageListService, MessageListManager>();
-            services.StartTCPServer(TCPServer_Port, TCPServer_MaxQueue);
+            //services.StartTCPServer(TCPServer_Port, TCPServer_MaxQueue);
             //services.AddSingleton<ITcpClientService, TcpClientManager>();
         }
 

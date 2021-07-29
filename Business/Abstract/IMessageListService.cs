@@ -13,5 +13,7 @@ namespace Business.Abstract
 
         Result Send(MessageList messageList);
 
+        Result TestSend(string testString);
+
     }
 }
