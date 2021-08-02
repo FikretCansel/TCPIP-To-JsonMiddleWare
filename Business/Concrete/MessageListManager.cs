@@ -14,7 +14,7 @@ namespace Business.Concrete
         MessageList MessageList = new MessageList();
         public MessageListManager()
         {
-            tcpServerService = new TcpClientManager("0&&0&&"+DateTime.Now.ToString() +"&&"+"yok");
+            tcpServerService = new TcpClientManager();
         }
         private MessageList ConvertToMessageList(String TcpMessage)
         {
@@ -40,7 +40,7 @@ namespace Business.Concrete
 
         public MessageList Get()
         {
-            MessageList MessageListValue = ConvertToMessageList(tcpServerService.TcpMessage);
+            MessageList MessageListValue = new MessageList();//ConvertToMessageList(tcpServerService.TcpMessage);
             return MessageListValue;
         }
 

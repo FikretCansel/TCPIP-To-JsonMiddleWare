@@ -10,31 +10,40 @@ using Entity.Abstract;
 using Entity;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using Core.TcpObjects.Receive.Concrete;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace Core.TcpClient
 {
-    public class TcpClientManager<T> where T:IEntity, ITcpClientService
+    public class TcpClientManager: ITcpClientService
     {
         SimpleTcpClient client;
         Boolean connectionState=false;
-        T _TcpClientObj;
+        //T _TcpClientObj;
+        public IPlatform tcpObject = null;
+        string _controllerName = "";
 
         //MotorCurrent.Motor1 MotorCurrent.Motor2 SystemTempe.Panel SystemTempe.Bellows
 
 
-        public TcpClientManager(String initTcpMessage,T Object)
+        public TcpClientManager()
         {
-            _TcpClientObj = Object;
-            client = new SimpleTcpClient("127.0.0.1:9000");
+            StackFrame frame = new StackFrame(1);
+            var method = frame.GetMethod();
+            _controllerName = method.DeclaringType.Name;
+            // _TcpClientObj = Object;
+            client = new SimpleTcpClient("127.0.0.1:8000");
             client.Events.Connected += Events_Connected;
             client.Events.DataReceived += Events_DataReceived;
             client.Events.Disconnected += Events_Disconnected;
             client.Connect();
         }
 
-        private void Events_DataReceived(object sender, DataReceivedEventArgs e)
+        private void Events_DataReceived(object sender, SimpleTcp.DataReceivedEventArgs e)
         {
-            ConvertObjectFromByteArray(e.Data);
+            IPlatform convertedObject = (IPlatform)ConvertObjectFromByteArray(e.Data);
+            tcpObject = convertedObject;
         }
 
         private void Events_Disconnected(object sender, ClientDisconnectedEventArgs e)
@@ -70,14 +79,13 @@ namespace Core.TcpClient
             }
         }
 
-        public void ConvertObjectFromByteArray(byte[] data)
+        public object ConvertObjectFromByteArray(byte[] data)
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            using (MemoryStream ms = new MemoryStream(data))
-            {
-                object obj = bf.Deserialize(ms);
-                _TcpClientObj = (T)obj;
-            }
+            GCHandle gcHandle = GCHandle.Alloc(data, GCHandleType.Pinned);
+            Type objectType = FindObjectType(_controllerName);
+            object converted_data = Marshal.PtrToStructure(gcHandle.AddrOfPinnedObject(), objectType);
+            gcHandle.Free();
+            return converted_data;
 
         }
 
@@ -91,7 +99,7 @@ namespace Core.TcpClient
         //}
 
 
-        public Result SendObject(T message)
+        public Result SendObject(string message)
         {
             if (connectionState)
             {
@@ -106,6 +114,15 @@ namespace Core.TcpClient
             }
         }
 
-
+        public Type FindObjectType(string callerControllerName)
+        {
+            switch (callerControllerName)
+            {
+                case "TcpTestController":
+                    return typeof(SettedLimit);
+                default:
+                    return typeof(string);
+            }
+        }
     }
 }

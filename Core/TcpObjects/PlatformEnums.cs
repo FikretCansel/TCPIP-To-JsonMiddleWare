@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.TcpObjects.Send
+namespace Core.TcpObjects
 {
     enum SystemState
     {

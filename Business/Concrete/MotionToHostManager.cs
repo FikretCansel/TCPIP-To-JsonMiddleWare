@@ -18,7 +18,7 @@ namespace Business.Concrete
 
         public MotionToHostManager()
         {
-            tcpServerService = new TcpClientManager("0&&0&&0&&0&&0");
+            tcpServerService = new TcpClientManager();
         }
 
         private MotionToHost ConvertToMotionToHost(String TcpMessage)
@@ -34,7 +34,7 @@ namespace Business.Concrete
 
         public MotionToHost Get()
         {
-            MotionToHost MotionToHostValue = ConvertToMotionToHost(tcpServerService.TcpMessage);
+            MotionToHost MotionToHostValue = new MotionToHost();//ConvertToMotionToHost(tcpServerService.TcpMessage);
             return MotionToHostValue;
         }
 
