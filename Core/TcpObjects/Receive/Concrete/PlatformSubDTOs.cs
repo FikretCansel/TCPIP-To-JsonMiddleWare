@@ -11,11 +11,11 @@ namespace Core.TcpObjects.Receive.Concrete
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public class SettedLimit : IPlatform
 	{
-		//AxisType axisType;
-		public double positionLimitMin { get; set; }
-		public double positionLimitMax { get; set; }
-		public double velocityLimitMin { get; set; }
-		public double velocityLimitMax { get; set; }
+		AxisType axisType;
+		public double positionLimitMin;
+		public double positionLimitMax;
+		public double velocityLimitMin;
+		public double velocityLimitMax;
 	};
 
 	public class SettedSweepPosition : IPlatform
@@ -27,14 +27,14 @@ namespace Core.TcpObjects.Receive.Concrete
 		double standbyTime;
 	};
 
-	public class SettedFixedPosition
+	public class SettedFixedPosition : IPlatform
 	{
 		AxisType axisType;
 		double positionValue;
 		double velocityValue;
 	};
 
-	public class SettedPidParam
+	public class SettedPidParam : IPlatform
 	{
 		double Kp;
 		double Ki;
@@ -43,7 +43,7 @@ namespace Core.TcpObjects.Receive.Concrete
 	};
 
 
-	public class AxisValues
+	public class AxisValues : IPlatform
 	{
 		SettedPidParam pid_parameters;
 		MotionValue Motor;
@@ -59,7 +59,7 @@ namespace Core.TcpObjects.Receive.Concrete
 		byte reserved2;
 
 	}
-	public class MotionValue
+	public class MotionValue : IPlatform
 	{
 		double Pos;
 		double Vel;

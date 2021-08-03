@@ -22,7 +22,7 @@ namespace WebApi.Controllers
         public IActionResult ReceiveTest()
         {
             tcpServerService.Send("sa");
-            while (tcpServerService.tcpObject == null) ;
+            while (tcpServerService.tcpObject == null);
             return Ok((SettedLimit)tcpServerService.tcpObject);
         }
     }

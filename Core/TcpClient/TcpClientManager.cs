@@ -39,11 +39,12 @@ namespace Core.TcpClient
             client.Events.Disconnected += Events_Disconnected;
             client.Connect();
         }
-
+        public int i = 0;
         private void Events_DataReceived(object sender, SimpleTcp.DataReceivedEventArgs e)
         {
             IPlatform convertedObject = (IPlatform)ConvertObjectFromByteArray(e.Data);
             tcpObject = convertedObject;
+            Console.WriteLine("#{0} Data received: {1}", i, tcpObject);
         }
 
         private void Events_Disconnected(object sender, ClientDisconnectedEventArgs e)
